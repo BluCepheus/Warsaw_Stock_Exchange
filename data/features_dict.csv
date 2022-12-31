@@ -1,0 +1,247 @@
+Variable,PL,EN
+quarter,Kwartał,Quarter
+company_code,Kod firmy,Company code
+growth_of_price_yy,Wzrost ceny r/r,Growth of price y/y
+price,Kurs,Price
+number_of_shares,Liczba akcji,Number of shares
+book_value_per_share,Wartość księgowa na akcję,Book value per share
+price_book_value,Cena / Wartość księgowa,Price / Book value
+graham's_book_value_per_share,Wartość księgowa Grahama na akcję,Graham's book value per share
+price_graham's_book_value,Cena / Wartość księgowa Grahama,Price / Graham's book value
+sales_revenues_per_share,Przychody ze sprzedaży na akcję,Sales revenues per share
+price_sales_revenues,Cena / Przychody ze sprzedaży,Price / Sales revenues
+earnings_per_share,Zysk na akcję,Earnings per share
+price_earnings,Cena / Zysk,Price / Earnings
+ebit_per_share,Zysk operacyjny na akcję,EBIT per share
+price_ebit,Cena / Zysk operacyjny,Price / EBIT
+enterprise_value_per_share,Enterprise Value na akcję,Enterprise Value per share
+ev_sales_revenues,EV / Przychody ze sprzedaży,EV / Sales revenues
+ev_ebit,EV / EBIT,EV / EBIT
+ev_ebitda,EV / EBITDA,EV / EBITDA
+roe,ROE,ROE
+roa,ROA,ROA
+ebit_margin,Marża zysku operacyjnego,EBIT margin
+net_earnings_margin,Marża zysku netto,Net earnings margin
+sales_earnings_margin,Marża zysku ze sprzedaży,Sales earnings margin
+gross_earnings_margin,Marża zysku brutto,Gross earnings margin
+gross_earnings_margin_on_sales,Marża zysku brutto ze sprzedaży,Gross earnings margin on sales
+operational_return_on_assets,Rentowność operacyjna aktywów,Operational return on assets
+roic,ROIC,ROIC
+share_of_net_profit_in_operational_cash_flows,Udział zysku netto w przepływach operacyjnych,Share of net profit in operational cash flows
+index_of_sources_of_investment_financing,Wskaźnik źródeł finansowania inwestycji,Index of sources of investment financing
+total_debt,Zadłużenie ogólne,Total debt
+equity_debt,Zadłużenie kapitału własnego,Equity debt
+long_term_debt,Zadłużenie długoterminowe,Long-term debt
+fixed_assets_debt,Zadłużenie środków trwałych,Fixed assets debt
+coverage_of_fixed_assets_with_fixed_capital,Pokrycie aktywów trwałych kapitałami stałymi,Coverage of fixed assets with fixed capital
+sustainability_of_the_financing_structure,Trwałość struktury finansowania,Sustainability of the financing structure
+use_of_foreign_capital,Zastosowanie kapitału obcego,Use of foreign capital
+general_financial_situation_index,Wskaźnik ogólnej sytuacji finansowej,General financial situation index
+net_debt,Zadłużenie netto,Net debt
+net_debt_ebitda,Zadłużenie netto / EBITDA,Net debt / EBITDA
+net_financial_debt,Zadłużenie finansowe netto,Net financial debt
+net_financial_debt_ebitda,Zadłużenie finansowe netto / EBITDA,Net financial debt / EBITDA
+i_degree_of_coverage,I stopień pokrycia,I degree of coverage
+ii_degree_of_coverage,II stopień pokrycia,II degree of coverage
+cash_liquidity,Płynność gotówkowa,Cash liquidity
+quick_liquidity,Płynność szybka,Quick liquidity
+current_liquidity,Płynność bieżąca,Current liquidity
+increased_liquidity,Płynność podwyższona,Increased liquidity
+coverage_of_liabilities_with_receivables,Pokrycie zobowiązań należnościami,Coverage of liabilities with receivables
+share_of_working_capital_in_assets,Udział kapitału pracującego w aktywach,Share of working capital in assets
+assets_cycle,Cykl należności,Assets cycle
+stock_cycle,Cykl zapasów,Stock cycle
+operational_cycle,Cykl operacyjny,Operational cycle
+liabilities_cycle,Cykl zobowiązań,Liabilities cycle
+trade_liabilities_cycle,Cykl zobowiązań handlowych ,Trade liabilities cycle
+cash_conversion_cycle,Cykl konwersji gotówki,Cash conversion cycle
+total_assets_turnover,Rotacja majątku ogółem,Total assets turnover
+rotation_of_fixed_assets,Rotacja majątku trwałego,Rotation of fixed assets
+rotation_of_current_assets,Rotacja majątku obrotowego,Rotation of current assets
+assets_rotation,Rotacja należności,Assets rotation
+stock_rotation,Rotacja zapasów,Stock rotation
+coverage_of_costs_with_working_capital,Pokrycie kosztów kapitałem obrotowym,Coverage of costs with working capital
+net_working_capital,Kapitał obrotowy netto,Net working capital
+sales_revenues,Przychody ze sprzedaży,Sales revenues
+technical_cost_of_production_sold,Techniczny koszt wytworzenia produkcji sprzedanej,Technical cost of production sold
+selling_costs,Koszty sprzedaży,Selling costs
+administrative_expenses,Koszty ogólnego zarządu,Administrative expenses
+earnings_on_sales,Zysk ze sprzedaży,Earnings on sales
+other_operational_income,Pozostałe przychody operacyjne,Other operational income
+other_operational_costs,Pozostałe koszty operacyjne,Other operational costs
+ebit,Zysk operacyjny (EBIT),EBIT
+financial_income,Przychody finansowe,Financial income
+financial_costs,Koszty finansowe,Financial costs
+other_income,Pozostałe przychody (koszty),Other income
+earnings_from_business_activity,Zysk z działalności gospodarczej,Earnings from business activity
+result_of_extraordinary_events,Wynik zdarzeń nadzwyczajnych,Result of extraordinary events
+earnings_before_tax,Zysk przed opodatkowaniem,Earnings before tax
+net_earningsloss_from_discontinued_operations,Zysk (strata) netto z działalności zaniechanej,Net earnings/loss from discontinued operations
+net_earnings,Zysk netto,Net earnings
+net_earnings_of_shareholders_of_the_parent_company,Zysk netto akcjonariuszy jednostki dominującej,Net earnings of shareholders of the parent company
+ebitda,EBITDA,EBITDA
+fixed_assets,Aktywa trwałe,Fixed assets
+intangible_and_legal_assets,Wartości niematerialne i prawne,Intangible and legal assets
+company_value,Wartość firmy,Company value
+tangible_components_of_fixed_assets,Rzeczowe składniki majątku trwałego,Tangible components of fixed assets
+right_of_use_assets,Aktywa z tytułu prawa do użytkowania,Right-of-use assets
+long_term_assets,Należności długoterminowe,Long-term assets
+long_term_investment,Inwestycje długoterminowe,Long-term investment
+other_fixed_assets,Pozostałe aktywa trwałe,Other fixed assets
+current_assets,Aktywa obrotowe,Current assets
+stock,Zapasy,Stock
+short_term_assets,Należności krótkoterminowe,Short-term assets
+short_term_investment,Inwestycje krótkoterminowe,Short-term investment
+cash_and_cash_equivalents,Środki pieniężne i inne aktywa pieniężne,Cash and cash equivalents
+other_current_assets,Pozostałe aktywa obrotowe,Other current assets
+fixed_assets_held_for_sale,Aktywa trwałe przeznaczone do sprzedaży,Fixed assets held for sale
+total_assets,Aktywa razem,Total assets
+equity_of_shareholders_of_the_parent_company,Kapitał własny akcjonariuszy jednostki dominującej,Equity of shareholders of the parent company
+core_capital,Kapitał (fundusz) podstawowy,Core capital
+own_shares,Udziały (akcje) własne,Own shares
+supplementary_capital,Kapitał (fundusz) zapasowy,Supplementary capital
+non_controlling_share,Udziały niekontrolujące,Non-controlling share
+long_term_liabilities,Zobowiązania długoterminowe,Long-term liabilities
+long_term_trade_liabilities,Z tytułu dostaw i usług,Long-term trade liabilities
+loans,Kredyty i pożyczki,Loans
+long_term_debt_securities_liabilities,Z tytułu emisji dłużnych papierów wartościowych,Long-term debt securities liabilities
+finance_leasing_liabilities,Zobowiązania z tytułu leasingu finansowego,Finance leasing liabilities
+other_long_term_liabilities,Inne zobowiązania długoterminowe,Other long-term liabilities
+short_term_liabilities,Zobowiązania krótkoterminowe,Short-term liabilities
+other_short_term_liabilities,Inne zobowiązania krótkoterminowe,Other short-term liabilities
+accruals,Rozliczenia międzyokresowe,Accruals
+total_liabilities,Pasywa razem,Total liabilities
+cash_flows_from_operational_activities,Przepływy pieniężne z działalności operacyjnej,Cash flows from operational activities
+amortization,Amortyzacja,Amortization
+cash_flows_from_investing_activities,Przepływy pieniężne z działalności inwestycyjnej,Cash flows from investing activities
+capex,CAPEX (niematerialne i rzeczowe),CAPEX
+cash_flows_from_finance_activities,Przepływy pieniężne z działalności finansowej,Cash flows from finance activities
+share_issue,Emisja akcji,Share issue
+dividend_val,Dywidenda,Value of dividend
+share_purchase,Skup akcji,Share purchase
+leasing_payments,Płatności z tytułu umów leasingu,Leasing payments
+total_cash_flows,Przepływy pieniężne razem,Total cash flows
+free_cash_flow,Free Cash Flow,Free cash flow
+interest_income,Przychody odsetkowe,Interest income
+interest_costs,Koszty odsetkowe,Interest costs
+net_interest_income,Wynik z tytułu odsetek,Net interest income
+commission_income,Przychody prowizyjne,Commission income
+commission_costs,Koszty prowizyjne,Commission costs
+result_on_commission,Wynik z tytułu prowizji,Result on commission
+dividend_income,Przychody z tytułu dywidend,Dividend income
+trading_result_and_revaluation,Wynik handlowy i rewaluacja,Trading result and revaluation
+result_on_other_financial_instruments,Wynik na pozostałych instrumentach finansowych,Result on other financial instruments
+net_impairment_losses_on_loans,Odpisy netto z tytułu utraty wartości kredytów,Net impairment losses on loans
+general_administrative_costs,Ogólne koszty administracyjne,General administrative costs
+operating_result,Wynik operacyjny,Operating result
+share_in_the_profits_of_subordinated_entities,Udział w zyskach jednostek podporządkowanych,Share in the profits of subordinated entities
+cash_and_operations_with_central_banks,Gotówka i operacje z bankami centralnymi,Cash and operations with central banks
+assets_from_banks,Należności od banków,Assets from banks
+financial_assets_held_for_trading,Aktywa finansowe przeznaczone do obrotu,Financial assets held for trading
+derivative_hedging_instruments,Pochodne instrumenty zabezpieczające,Derivative hedging instruments
+assets_from_customers,Należności od klientów,Assets from customers
+investment_financial_assets,Inwestycyjne aktywa finansowe,Investment financial assets
+investments_in_affiliates,Inwestycje w podmioty stowarzyszone,Investments in affiliates
+intangible_assets,Wartości niematerialne,Intangible assets
+tangible_fixed_assets,Rzeczowy majątek trwały,Tangible fixed assets
+net_deferred_tax_assets,Aktywa z tytułu odroczonego podatku dochodowego netto,Net deferred tax assets
+other_assets,Pozostałe aktywa,Other assets
+liabilities_to_the_central_bank,Zobowiązania wobec banku centralnego,Liabilities to the central bank
+liabilities_to_banks,Zobowiązania wobec banków,Liabilities to banks
+financial_liabilities_held_for_trading,Zobowiązania finansowe przeznaczone do obrotu,Financial liabilities held for trading
+commitments_to_customers,Zobowiązania wobec klientów,Commitments to customers
+liabilities_due_to_the_issue_of_debt_securities_worth,Zobowiązania z tytułu emisji dłużnych pap. wart.,Liabilities due to the issue of debt securities worth
+subordinated_liabilities,Zobowiązania podporządkowane,Subordinated liabilities
+liabilities_due_to_current_income_tax,Zobowiązania z tytułu bieżącego podatku dochodowego,Liabilities due to current income tax
+other_liabilities,Pozostałe pasywa,Other liabilities
+total_debit,Zobowiązania razem,Total debit
+equity,Kapitały własne,Equity
+share_capital,Kapitał akcyjny,Share capital
+other_capitals,Pozostałe kapitały,Other capitals
+revaluation_reserve,Kapitał z aktualizacji wyceny,Revaluation reserve
+retained_earnings,Zyski zatrzymane,Retained earnings
+current_year_result,Wynik roku bieżącego,Current year result
+total_capitals,Kapitały razem,Total capitals
+total_operating_flows,Przepływy operacyjne razem,Total operating flows
+gross_domestic_product_q,Produkt Krajowy Brutto (Q),Gross Domestic Product (Q)
+total_gross_value_added_yy_q,Wartość dodana brutto ogółem r/r (Q),Total gross value added y/y (Q)
+domestic_demand_yy_q,Popyt krajowy r/r (Q),Domestic demand y/y (Q)
+new_orders_in_industry_mm_m,Nowe zamówienia w przemyśle m/m (M),New orders in industry m/m (M)
+new_orders_in_industry_yy_m,Nowe zamówienia w przemyśle r/r (M),New orders in industry y/y (M)
+inflation_yy_m,Inflacja r/r (M),Inflation y/y (M)
+inflation_mm_m,Inflacja m/m (M),Inflation m/m (M)
+total_money_supply_m3_pln_million_q,Podaż pieniądza ogółem M3 [mln PLN] (Q),Total money supply M3 [PLN million] (Q)
+registered_unemployment_rate_m,Stopa bezrobocia rejestrowanego (M),Registered unemployment rate (M)
+registered_unemployed_thousands_m,Bezrobotni zarejestrowani [tys.] (M),Registered unemployed [thousands] (M)
+registered_unemployed_yy_m,Bezrobotni zarejestrowani r/r (M),Registered unemployed y/y (M)
+registered_unemployed_mm_m,Bezrobotni zarejestrowani m/m (M),Registered unemployed m/m (M)
+exports_of_goods_pln_million_m,Eksport towarów [mln PLN] (M),Exports of goods [PLN million] (M)
+exports_of_goods_yy_m,Eksport towarów r/r (M),Exports of goods y/y (M)
+exports_of_goods_mm_m,Eksport towarów m/m (M),Exports of goods m/m (M)
+imports_of_goods_pln_million_m,Import towarów [mln PLN] (M),Imports of goods [PLN million] (M)
+imports_of_goods_yy_m,Import towarów r/r (M),Imports of goods y/y (M)
+imports_of_goods_mm_m,Import towarów m/m (M),Imports of goods m/m (M)
+imports_of_goods_and_services_yy_q,Import towarów i usług r/r (Q),Imports of goods and services y/y (Q)
+exports_of_goods_and_services_yy_q,Eksport towarów i usług r/r (Q),Exports of goods and services y/y (Q)
+retail_turnover_yy_q,Obroty w handlu detalicznym r/r (M),Retail turnover y/y (M)
+retail_sales_of_goods_yy_m,Sprzedaż detaliczna towarów r/r (M),Retail sales of goods y/y (M)
+retail_sales_of_goods_mm_m,Sprzedaż detaliczna towarów m/m (M),Retail sales of goods m/m (M)
+price_indices_of_sold_production_in_industry_yy_m,Wskaźniki cen produkcji sprzedanej w przemyśle r/r (M),Price indices of sold production in industry y/y (M)
+price_indices_of_sold_production_in_industry_mm_m,Wskaźniki cen produkcji sprzedanej w przemyśle m/m (M),Price indices of sold production in industry m/m (M)
+total_sold_production_of_industry_yy_m,Produkcja sprzedana przemysłu ogółem r/r (M),Total sold production of industry y/y (M)
+total_sold_production_of_industry_mm_m,Produkcja sprzedana przemysłu ogółem m/m (M),Total sold production of industry m/m (M)
+construction_and_assembly_production_yy_m,Produkcja budowlano-montażowa r/r (M),Construction and assembly production y/y (M)
+construction_and_assembly_production_mm_m,Produkcja budowlano-montażowa m/m (M),Construction and assembly production m/m (M)
+domestic_debt_of_the_state_treasury_as_at_the_end_of_the_period_pln_million_q,Zadłużenie krajowe Skarbu Państwa (stan w końcu okresu) [mln PLN] (Q),Domestic debt of the State Treasury (as at the end of the period) [PLN million] (Q)
+foreign_debt_of_the_state_treasury_as_at_the_end_of_the_period_pln_million_q,Dług zagraniczny Skarbu Państwa (stan w końcu okresu) [mln PLN] (Q),Foreign debt of the State Treasury (as at the end of the period) [PLN million] (Q)
+total_investment_from_the_beginning_of_the_year_to_the_end_of_the_period_pln_million_q,Nakłady inwestycyjne ogółem (od początku roku do końca okresu) [mln PLN] (Q),Total investment expenditures (from the beginning of the year to the end of the period) [PLN million] (Q)
+average_employment_in_the_enterprise_sector_thousands_m,Przeciętne zatrudnienie w sektorze przedsiębiorstw [tys.] (M),Average employment in the enterprise sector [thousands] (M)
+average_employment_in_the_enterprise_sector_yy_m,Przeciętne zatrudnienie w sektorze przedsiębiorstw r/r (M),Average employment in the enterprise sector y/y (M)
+average_employment_in_the_enterprise_sector_mm_m,Przeciętne zatrudnienie w sektorze przedsiębiorstw m/m (M),Average employment in the enterprise sector m/m (M)
+average_monthly_nominal_gross_remuneration_in_the_enterprise_sector_pln_m,Przeciętne miesięczne nominalne wynagrodzenie brutto w sektorze przedsiębiorstw [PLN] (M),Average monthly nominal gross remuneration in the enterprise sector [PLN] (M)
+average_monthly_nominal_gross_salary_in_the_enterprise_sector_yy_m,Przeciętne miesięczne nominalne wynagrodzenie brutto w sektorze przedsiębiorstw r/r (M),Average monthly nominal gross salary in the enterprise sector y/y (M)
+average_monthly_nominal_gross_salary_in_the_enterprise_sector_mm_m,Przeciętne miesięczne nominalne wynagrodzenie brutto w sektorze przedsiębiorstw m/m (M),Average monthly nominal gross salary in the enterprise sector m/m (M)
+average_monthly_real_gross_salary_in_the_enterprise_sector_yy_m,Przeciętne miesięczne realne wynagrodzenie brutto w sektorze przedsiębiorstwa r/r (M),Average monthly real gross salary in the enterprise sector y/y (M)
+average_monthly_real_gross_salary_in_the_enterprise_sector_mm_m,Przeciętne miesięczne realne wynagrodzenie brutto w sektorze przedsiębiorstw m/m (M),Average monthly real gross salary in the enterprise sector m/m (M)
+average_monthly_nominal_gross_old_age_and_disability_pension_from_the_non_agricultural_social_security_system_pln_m,Przeciętna miesięczna nominalna emerytura i renta brutto z pozarolniczego systemu ubezpieczeń społecznych [PLN] (M),Average monthly nominal gross old-age and disability pension from the non-agricultural social security system [PLN] (M)
+average_monthly_nominal_gross_old_age_and_disability_pension_from_the_non_agricultural_social_security_system_yy_m,Przeciętna miesięczna nominalna emerytura i renta brutto z pozarolniczego systemu ubezpieczeń społecznych r/r (M),Average monthly nominal gross old-age and disability pension from the non-agricultural social security system y/y (M)
+average_monthly_nominal_gross_old_age_and_disability_pension_from_the_non_agricultural_social_security_system_mm_m,Przeciętna miesięczna nominalna emerytura i renta brutto z pozarolniczego systemu ubezpieczeń społecznych m/m (M),Average monthly nominal gross old-age and disability pension from the non-agricultural social security system m/m (M)
+average_monthly_real_gross_old_age_and_disability_pension_from_the_non_agricultural_social_security_system_yy_m,Przeciętna miesięczna realna emerytura i renta brutto z pozarolniczego systemu ubezpieczeń społecznych r/r (M),Average monthly real gross old-age and disability pension from the non-agricultural social security system y/y (M)
+average_monthly_real_gross_old_age_and_disability_pension_from_the_non_agricultural_social_security_system_mm_m,Przeciętna miesięczna realna emerytura i renta brutto z pozarolniczego systemu ubezpieczeń społecznych m/m (M),Average monthly real gross old-age and disability pension from the non-agricultural social security system m/m (M)
+average_monthly_nominal_old_age_and_disability_pension_for_individual_farmers_gross_pln_m,Przeciętna miesięczna nominalna emerytura i renta rolników indywidualnych brutto [PLN] (M),Average monthly nominal old-age and disability pension for individual farmers gross [PLN] (M)
+average_monthly_nominal_old_age_and_disability_pension_for_individual_farmers_gross_yy_m,Przeciętna miesięczna nominalna emerytura i renta rolników indywidualnych brutto r/r (M),Average monthly nominal old-age and disability pension for individual farmers gross y/y (M)
+average_monthly_nominal_old_age_and_disability_pension_for_individual_farmers_gross_mm_m,Przeciętna miesięczna nominalna emerytura i renta rolników indywidualnych brutto m/m (M),Average monthly nominal old-age and disability pension for individual farmers gross m/m (M)
+average_monthly_real_old_age_and_disability_pension_of_individual_farmers_gross_yy_m,Przeciętna miesięczna realna emerytura i renta rolników indywidualnych brutto r/r (M),Average monthly real old-age and disability pension of individual farmers gross y/y (M)
+average_monthly_real_old_age_and_disability_pension_of_individual_farmers_gross_mm_m,Przeciętna miesięczna realna emerytura i renta rolników indywidualnych brutto m/m (M),Average monthly real old-age and disability pension of individual farmers gross m/m (M)
+price_indices_of_construction_and_assembly_production_yy_m,Wskaźniki cen produkcji budowlano-montażowej r/r (M),Price indices of construction and assembly production y/y (M)
+price_indices_of_construction_and_assembly_production_mm_m,Wskaźniki cen produkcji budowlano-montażowej m/m (M),Price indices of construction and assembly production m/m (M)
+flats_completed_m,Mieszkania oddane do użytkowania (M),Flats completed (M)
+interest_rate_on_pln_corporate_deposits_at_commercial_banks_with_original_maturity_up_to_and_including_2_years_q,Stopa oprocentowania depozytów złotowych przedsiębiorstw w bankach komercyjnych z terminem pierwotnym do 2 lat włącznie (Q),Interest rate on PLN corporate deposits at commercial banks with original maturity up to and including 2 years (Q)
+interest_rate_on_pln_deposits_of_households_and_non_commercial_institutions_serving_households_in_commercial_banks_with_original_maturity_up_to_and_including_2_years_as_at_the_end_of_the_period_q,Stopa oprocentowania depozytów złotowych gospodarstw domowych i instytucji niekomercyjnych działających na rzecz gospodarstw domowych w bankach komercyjnych z terminem pierwotnym do 2 lat włącznie (stan w końcu okresu) (Q),Interest rate on PLN deposits of households and non-commercial institutions serving households in commercial banks with original maturity up to and including 2 years (as at the end of the period) (Q)
+usd_pln,USD/PLN,USD/PLN
+capitalization_usd,Kapitalizacja (USD),Market capitalization (USD)
+greenblatt_rank,Ranking Greenblatta,Greenblatt's ranking
+net_earnings_1Q,Zysk netto -1Q,Net earnings -1Q
+net_earnings_2Q,Zysk netto -2Q,Net earnings -2Q
+net_earnings_5Q,Zysk netto -5Q,Net earnings -5Q
+net_earnings_6Q,Zysk netto -6Q,Net earnings -6Q
+sales_revenues_1Q,Przychody ze sprzedaży -1Q,Sales revenues -1Q
+sales_revenues_2Q,Przychody ze sprzedaży -2Q,Sales revenues -2Q
+sales_revenues_5Q,Przychody ze sprzedaży -5Q,Sales revenues -5Q
+sales_revenues_6Q,Przychody ze sprzedaży -6Q,Sales revenues -6Q
+wig,WIG,WIG
+wig_6m,WIG 6M,WIG 6M
+growth_of_price_6m,Wzrost ceny 6M,Growth of price 6M
+relative_strength_6m,Siła relatywna 6M,Relative strength 6M
+avg_price_earnings,Średnia Cena / Zysk,Average Price / Earnings
+rank_relative_strength_6m,Ranking siły relatywnej 6M,Relative strength 6M ranking
+rank_ebit_yy,Ranking zysku operacyjnego r/r,EBIT y/y ranking
+rank_price_sales_revenues,Ranking Ceny / Przychodów ze sprzedaży,Price / Sales revenues ranking
+price_earnings_net_earnings,Cena / Zysk / Zysk netto,Price / Earnings / Net earnings
+rank_price_earnings,Ranking Ceny / Zysku,Price / Earnings ranking
+roce,ROCE,ROCE
+net_debt_ebit,Zadłużenie netto / EBIT,Net debt / EBIT
+current_assets_short_term_liabilities,Aktywa obrotowe / Zobowiązania krótkoterminowe,Current assets / Short-term liabilities
+long_term_liabilities_net_working_capital,Zobowiązania długoterminowe / Kapitał obrotowy,Long-term liabilities / Net working capital
+dividend_1Y,Dywidenda w zeszłym roku,Dividend in previous year
+net_earnings_5Y,Zysk netto 5Y,Net earnings 5Y
