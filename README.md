@@ -2,7 +2,7 @@
 
 The purpose of this repo is to gather all possible information about Warsaw Stock Exchange companies and assess whether it is possible to find financial and economic indices, which influence increase in share prices of each company.
 
-This repo would contain two major features:
+This repo would contain three major features:
 
 1. Web scrapping of Warsaw Stock Exchange companies' data from https://www.biznesradar.pl. This website provides - at least to my knowledge - all data from financial reports of each company present at WSE.
 2. Using NYSE guru strategies against WSE - in progress.
