@@ -16,6 +16,7 @@ Repo content:
   - analysis of guru strategies.
 - data folder contains:
 	- dictionary of variable names and their full names in Polish and English;
+	- dictionary of industry names;
 	- companies folder with files with information from WSE companies' financial reports;
 	- eco folder with files with economic indices;
 	- full_datasets folder with merged companies' financial reports and economic indices.
