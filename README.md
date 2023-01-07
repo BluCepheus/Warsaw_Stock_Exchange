@@ -1,5 +1,7 @@
 # Warsaw_Stock_Exchange
 
+Benjamin Graham, the author of *The Intelligent Investor* and the proponent of value investing, taught that the returns an investor could expect were not proportional to the risk he was willing to assume, but rather, to the effort he was willing to put into his investments. This idea guided me while investing in the stock market and mobilized me to look for a strategy that would be stripped of the emotions that torment the stock market, and would be a set of clear rules pointing to companies worthy of interest.
+
 The purpose of this repo is to gather all possible information about Warsaw Stock Exchange companies and assess whether it is possible to find financial and economic indices, which influence increase in share prices of each company.
 
 This repo would contain three major features:
