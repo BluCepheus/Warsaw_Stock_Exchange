@@ -244,4 +244,58 @@ net_debt_ebit,Zadłużenie netto / EBIT,Net debt / EBIT
 current_assets_short_term_liabilities,Aktywa obrotowe / Zobowiązania krótkoterminowe,Current assets / Short-term liabilities
 long_term_liabilities_net_working_capital,Zobowiązania długoterminowe / Kapitał obrotowy,Long-term liabilities / Net working capital
 dividend_1Y,Dywidenda w zeszłym roku,Dividend in previous year
+net_earnings_1Y,Zysk netto 1Y,Net earnings 1Y
+net_earnings_2Y,Zysk netto 2Y,Net earnings 2Y
+net_earnings_3Y,Zysk netto 3Y,Net earnings 3Y
+net_earnings_4Y,Zysk netto 4Y,Net earnings 4Y
 net_earnings_5Y,Zysk netto 5Y,Net earnings 5Y
+country,Kraj,Country
+industry,Branża,Industry
+sales_revenues_1Y_usd,Przychody ze sprzedaży 1Y (USD),Sales revenues 1Y (USD)
+continuous_price_growth,Ciągły wzrost akcji (Q),Continuous growth of price (Q)
+continuous_dividend,Ciągła wypłata dywidend (Q),Continuous dividends payment (Q)
+sum_earnings_share_10Y,Suma zysku na akcję 10Y,Sum of earnings per share 10Y
+sum_earnings_share_9Y,Suma zysku na akcję 9Y,Sum of earnings per share 9Y
+sum_earnings_share_8Y,Suma zysku na akcję 8Y,Sum of earnings per share 8Y
+sum_earnings_share_7Y,Suma zysku na akcję 7Y,Sum of earnings per share 7Y
+sum_earnings_share_6Y,Suma zysku na akcję 6Y,Sum of earnings per share 6Y
+sum_earnings_share_5Y,Suma zysku na akcję 5Y,Sum of earnings per share 5Y
+sum_earnings_share_4Y,Suma zysku na akcję 4Y,Sum of earnings per share 4Y
+sum_earnings_share_3Y,Suma zysku na akcję 3Y,Sum of earnings per share 3Y
+sum_earnings_share_2Y,Suma zysku na akcję 2Y,Sum of earnings per share 2Y
+sum_earnings_share_1Y,Suma zysku na akcję 1Y,Sum of earnings per share 1Y
+avg_earnings_share_10Y,Średni zysk na akcję 10Y,Average earnings per share 10Y
+avg_earnings_share_9Y,Średni zysk na akcję 9Y,Average earnings per share 9Y
+avg_earnings_share_8Y,Średni zysk na akcję 8Y,Average earnings per share 8Y
+avg_earnings_share_7Y,Średni zysk na akcję 7Y,Average earnings per share 7Y
+avg_earnings_share_6Y,Średni zysk na akcję 6Y,Average earnings per share 6Y
+avg_earnings_share_5Y,Średni zysk na akcję 5Y,Average earnings per share 5Y
+avg_earnings_share_4Y,Średni zysk na akcję 4Y,Average earnings per share 4Y
+avg_earnings_share_3Y,Średni zysk na akcję 3Y,Average earnings per share 3Y
+avg_earnings_share_2Y,Średni zysk na akcję 2Y,Average earnings per share 2Y
+avg_earnings_share_1Y,Średni zysk na akcję 1Y,Average earnings per share 1Y
+sum_earnings_price_10Y_price_earnings,Suma zysku na akcję 10Y / Zysk na akcję,Sum of earnings per share 10Y / Earnings per share
+sum_earnings_price_9Y_price_earnings,Suma zysku na akcję 9Y / Zysk na akcję,Sum of earnings per share 9Y / Earnings per share
+sum_earnings_price_8Y_price_earnings,Suma zysku na akcję 8Y / Zysk na akcję,Sum of earnings per share 8Y / Earnings per share
+sum_earnings_price_7Y_price_earnings,Suma zysku na akcję 7Y / Zysk na akcję,Sum of earnings per share 7Y / Earnings per share
+sum_earnings_price_6Y_price_earnings,Suma zysku na akcję 6Y / Zysk na akcję,Sum of earnings per share 6Y / Earnings per share
+sum_earnings_price_5Y_price_earnings,Suma zysku na akcję 5Y / Zysk na akcję,Sum of earnings per share 5Y / Earnings per share
+sum_earnings_price_4Y_price_earnings,Suma zysku na akcję 4Y / Zysk na akcję,Sum of earnings per share 4Y / Earnings per share
+sum_earnings_price_3Y_price_earnings,Suma zysku na akcję 3Y / Zysk na akcję,Sum of earnings per share 3Y / Earnings per share
+sum_earnings_price_2Y_price_earnings,Suma zysku na akcję 2Y / Zysk na akcję,Sum of earnings per share 2Y / Earnings per share
+sum_earnings_price_1Y_price_earnings,Suma zysku na akcję 1Y / Zysk na akcję,Sum of earnings per share 1Y / Earnings per share 
+price_avg_earnings_share_10Y,Cena / Średni zysk na akcję 10Y,Price / Average earnings per share 10Y
+price_avg_earnings_share_9Y,Cena / Średni zysk na akcję 9Y,Price / Average earnings per share 9Y
+price_avg_earnings_share_8Y,Cena / Średni zysk na akcję 8Y,Price / Average earnings per share 8Y
+price_avg_earnings_share_7Y,Cena / Średni zysk na akcję 7Y,Price / Average earnings per share 7Y
+price_avg_earnings_share_6Y,Cena / Średni zysk na akcję 6Y,Price / Average earnings per share 6Y
+price_avg_earnings_share_5Y,Cena / Średni zysk na akcję 5Y,Price / Average earnings per share 5Y
+price_avg_earnings_share_4Y,Cena / Średni zysk na akcję 4Y,Price / Average earnings per share 4Y
+price_avg_earnings_share_3Y,Cena / Średni zysk na akcję 3Y,Price / Average earnings per share 3Y
+price_avg_earnings_share_2Y,Cena / Średni zysk na akcję 2Y,Price / Average earnings per share 2Y
+price_avg_earnings_share_1Y,Cena / Średni zysk na akcję 1Y,Price / Average earnings per share 1Y
+pos_net_earnings_5Y,Dodatni zysk netto 5Y,Positive net earnings 5Y
+pos_net_earnings_4Y,Dodatni zysk netto 4Y,Positive net earnings 4Y
+pos_net_earnings_3Y,Dodatni zysk netto 3Y,Positive net earnings 3Y
+pos_net_earnings_2Y,Dodatni zysk netto 2Y,Positive net earnings 2Y
+pos_net_earnings_1Y,Dodatni zysk netto 1Y,Positive net earnings 1Y

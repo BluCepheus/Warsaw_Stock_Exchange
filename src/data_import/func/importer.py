@@ -61,11 +61,10 @@ def dynamics(newer_val, older_val):
     # Handling 0 values is added
 
     if not np.isnan(newer_val):
-        if older_val == 0 and newer_val != 0:
-            return newer_val / 10 ** -(int(math.log10(abs(newer_val))) + 1)
         if older_val == 0 and newer_val == 0:
             return 0
-        return (newer_val - older_val) / abs(older_val)
+        if older_val != 0 and newer_val != 0:
+            return (newer_val - older_val) / abs(older_val)
     return math.nan
 
 def tab_finder(url, section_type, class_type):
@@ -75,7 +74,7 @@ def tab_finder(url, section_type, class_type):
     # Output is table found in website
 
     return bs(
-        requests.get(url, timeout = 100).content,
+        requests.get(url, timeout = 1000).content,
         'lxml'
     ).find(section_type, {'class':class_type})
 
@@ -128,9 +127,10 @@ def var_dynamics(data_frame):
 class CompanyDF():
     """Data frame with single company data"""
 
-    def __init__(self, code, features_dict):
+    def __init__(self, code, features_dict, industry_dict):
         self.code = code
         self.features_dict = features_dict
+        self.industry_dict = industry_dict
 
     def regular_importer(self, url):
         """Function to deal with regular tabs."""
@@ -215,20 +215,20 @@ class CompanyDF():
 
         return code_data_dict, quarters
 
-    def regular_addition(self, data_frame, data_dict, quarters, iteration):
-        """Function adding various 'dynamics' variables."""
+    def price_addition(self, data_frame):
+        """Function adding price 'dynamics' variables."""
         # Added dynamics varies depending on which table is actually processed
-        # For all tables it would be var_dynamics
-        # For market value indices it would be also price_dynamics
-        # For profit and loss account it would be also guru_dynamics
-
+        # For this table it would be var_dynamics and price_dynamics
 
         def price_dynamics(data_frame, comp_code):
             """Subfunction adding max price dynamics in the next year to data frame."""
-            # Max price dynamics in the next year is target feature for analysis.
+            # Best price dynamics in the next year (best_price_dynamics_y)
             # It means, e.g.: for Q1 2020, what was the maximum price in the following year?
             # I.e. we want to get max value for [Q2 2020, Q3 2020, Q4 2020, Q1 2021]
             # and then calculate % change between this max value and value for Q1 2020
+
+            # Price dynamics after a year (price_dynamics_y)
+            # It means, e.g.: for Q1 2020 we want to calculate % change between Q1 2021 and Q1 2020
 
             # Additionaly: 6M dynamics of price for calculating relative strength
             # This is simpler, e.g.: for Q1 2020 it would be dynamics between Q3 2019 and Q1 2020
@@ -237,12 +237,33 @@ class CompanyDF():
             dynamics_dict = {
                 'quarter':[],
                 'company_code':[],
-                'max_price_change_y':[],
-                'price_change_6m':[]
+                'best_price_dynamics_y':[],
+                'price_dynamics_y':[],
+                'price_dynamics_6m':[],
+                'sum_earnings_share_10Y':[],
+                'sum_earnings_share_9Y':[],
+                'sum_earnings_share_8Y':[],
+                'sum_earnings_share_7Y':[],
+                'sum_earnings_share_6Y':[],
+                'sum_earnings_share_5Y':[],
+                'sum_earnings_share_4Y':[],
+                'sum_earnings_share_3Y':[],
+                'sum_earnings_share_2Y':[],
+                'sum_earnings_share_1Y':[],
+                'avg_earnings_share_10Y':[],
+                'avg_earnings_share_9Y':[],
+                'avg_earnings_share_8Y':[],
+                'avg_earnings_share_7Y':[],
+                'avg_earnings_share_6Y':[],
+                'avg_earnings_share_5Y':[],
+                'avg_earnings_share_4Y':[],
+                'avg_earnings_share_3Y':[],
+                'avg_earnings_share_2Y':[],
+                'avg_earnings_share_1Y':[]
             }
 
             for row_name in data_frame.index.values:
-                older_quarter = quarters_changer(row_name, -2)
+                older_quarter_6m = quarters_changer(row_name, -2)
                 newer_quarters = [quarters_changer(row_name, i) for i in range(1, 5)]
                 newer_quarters_val = []
 
@@ -250,28 +271,105 @@ class CompanyDF():
                     if quarter in data_frame.index:
                         newer_quarters_val.append(data_frame.at[quarter, 'price'])
 
+                # best_price_dynamics_y
                 if newer_quarters_val:
                     quarters.append(row_name)
-                    dynamics_dict['max_price_change_y'].append(
-                        dynamics(max(newer_quarters_val), data_frame.at[row_name, 'price'])
+                    dynamics_dict['best_price_dynamics_y'].append(
+                        dynamics(
+                            max(newer_quarters_val), data_frame.at[row_name, 'price']
+                        )
                     )
+
                     dynamics_dict['quarter'].append(row_name)
                     dynamics_dict['company_code'].append(comp_code)
 
-                    if older_quarter in data_frame.index:
-                        dynamics_dict['price_change_6m'].append(
+                    # price_dynamics_y
+                    if len(newer_quarters) == 4 and newer_quarters[-1] in data_frame.index:
+                        dynamics_dict['price_dynamics_y'].append(
                             dynamics(
-                                data_frame.at[row_name, 'price'],
-                                data_frame.at[older_quarter, 'price']
+                                newer_quarters_val[-1], data_frame.at[row_name, 'price']
                             )
                         )
                     else:
-                        dynamics_dict['price_change_6m'].append(np.nan)
+                        dynamics_dict['price_dynamics_y'].append(np.nan)
+
+
+                    # price_dynamics_6m
+                    if older_quarter_6m in data_frame.index:
+                        dynamics_dict['price_dynamics_6m'].append(
+                            dynamics(
+                                data_frame.at[row_name, 'price'],
+                                data_frame.at[older_quarter_6m, 'price']
+                            )
+                        )
+                    else:
+                        dynamics_dict['price_dynamics_6m'].append(np.nan)
+
+                    # sum_earnings_share, avg_earnings_share
+                    for year in range(1, 11):
+                        older_quarters = [
+                            quarters_changer(row_name, -i) for i in range(1, 4 * year + 1)
+                        ]
+                        if all(quarter in data_frame.index for quarter in older_quarters):
+                            older_quarters_val = [
+                                data_frame.at[quarter, 'price'] for quarter in older_quarters
+                            ]
+                            dynamics_dict[
+                                ''.join(['sum_earnings_share_', str(year), 'Y'])
+                            ].append(sum(older_quarters_val))
+                            dynamics_dict[
+                                ''.join(['avg_earnings_share_', str(year), 'Y'])
+                            ].append(sum(older_quarters_val) / len(older_quarters_val))
+                        else:
+                            dynamics_dict[
+                                ''.join(['sum_earnings_share_', str(year), 'Y'])
+                            ].append(np.nan)
+                            dynamics_dict[
+                                ''.join(['avg_earnings_share_', str(year), 'Y'])
+                            ].append(np.nan)
 
             return pd.DataFrame(dynamics_dict, index = quarters)
 
+        def cont_price_growth(data_frame):
+            """Subfunction adding continuous price growth"""
+            # For each quarter checks for how long price was growing
+
+            quarters = []
+            data_dict = {'continuous_price_growth':[]}
+
+            for row_name in data_frame.index.sort_values():
+                quarters.append(row_name)
+                prev_quarter = quarters_changer(row_name, -1)
+                if prev_quarter in data_frame.index:
+                    prev_quarter_val = data_frame.at[prev_quarter, 'price']
+                    if prev_quarter_val <= data_frame.at[row_name, 'price']:
+                        data_dict['continuous_price_growth'].append(
+                            data_dict['continuous_price_growth'][-1] + 1
+                        )
+                    else:
+                        data_dict['continuous_price_growth'].append(0)
+                else:
+                    data_dict['continuous_price_growth'].append(0)
+
+            return pd.DataFrame(data_dict, index = quarters)
+
+        price_dynamics_df = price_dynamics(data_frame, self.code)
+        cont_price_growth_df = cont_price_growth(data_frame)
+        var_dynamics_df = var_dynamics(data_frame)
+        data_frame = price_dynamics_df.join(data_frame)
+        data_frame = data_frame.join(cont_price_growth_df)
+        data_frame = data_frame.join(var_dynamics_df)
+
+        return data_frame
+
+    def regular_addition(self, data_frame, data_dict, quarters, iteration):
+        """Function adding various 'dynamics' variables."""
+        # Added dynamics varies depending on which table is actually processed
+        # For all tables it would be var_dynamics
+        # For profit and loss account it would be also guru_dynamics
+
         def guru_dynamics(data_frame):
-            """Subfunction adding changes of various variables for guru strategies."""
+            """Subfunction adding various variables for guru strategies."""
             # This function adds values of net_earnings and sales_revenues in previous quarters.
             # 1Q - one quarter before current, 2Q - two quarters before current etc.
             # 5Y - five years before current quarter.
@@ -286,6 +384,10 @@ class CompanyDF():
                 'sales_revenues_2Q':[],
                 'sales_revenues_5Q':[],
                 'sales_revenues_6Q':[],
+                'net_earnings_1Y':[],
+                'net_earnings_2Y':[],
+                'net_earnings_3Y':[],
+                'net_earnings_4Y':[],
                 'net_earnings_5Y':[]
             }
 
@@ -295,43 +397,135 @@ class CompanyDF():
                     '2Q':quarters_changer(row_name, -2),
                     '5Q':quarters_changer(row_name, -5),
                     '6Q':quarters_changer(row_name, -6),
+                    '1Y':quarters_changer(row_name, -12),
+                    '2Y':quarters_changer(row_name, -24),
+                    '3Y':quarters_changer(row_name, -36),
+                    '4Y':quarters_changer(row_name, -48),
                     '5Y':quarters_changer(row_name, -60)
                 }
 
-                if all(
+                if any(
                     quarter in data_frame.index for quarter in quarters_dict.values()
                 ):
                     quarters.append(row_name)
                     for key, value in dynamics_dict.items():
-                        if key[:-3] in data_frame.items():
+                        if (
+                            quarters_dict[key[-2:]] in data_frame.index
+                            and key[:-3] in data_frame.columns
+                        ):
                             value.append(
-                                data_frame.at[quarters_dict[key[-2:], key[:-3]]]
+                                data_frame.at[quarters_dict[key[-2:]], key[:-3]]
                             )
                         else:
                             value.append(np.nan)
 
             return pd.DataFrame(dynamics_dict, index = quarters)
 
-        if iteration == 0:
-            price_dynamics_df = price_dynamics(data_frame, self.code)
-            var_dynamics_df = var_dynamics(data_frame)
-            data_frame = price_dynamics_df.join(data_frame)
-            data_frame = data_frame.join(var_dynamics_df)
-        else:
-            sub_df = pd.DataFrame(data_dict, index = quarters)
-            var_dynamics_df = var_dynamics(sub_df)
-            if iteration == 6:
-                guru_df = guru_dynamics(sub_df)
-            data_frame = data_frame.join(sub_df)
-            data_frame = data_frame.join(var_dynamics_df)
-            if iteration == 6:
-                data_frame = data_frame.join(guru_df)
+        def positive_earnings(data_frame):
+            """Function adding positive net earnings features"""
+            # 1 if net earnings in last year(s) were always positive
+            # 0 otherwise
+
+            quarters = []
+            pos_dict = {
+                'pos_net_earnings_5Y':[],
+                'pos_net_earnings_4Y':[],
+                'pos_net_earnings_3Y':[],
+                'pos_net_earnings_2Y':[],
+                'pos_net_earnings_1Y':[]
+            }
+
+            for row_name in data_frame.index.values:
+                quarters.append(row_name)
+                for year in range(1, 6):
+                    older_quarters = [
+                        quarters_changer(row_name, -i) for i in range(1, 4 * year + 1)
+                    ]
+                    if (
+                        all(quarter in data_frame.index for quarter in older_quarters)
+                        and 'net_earnings' in data_frame.columns
+                    ):
+                        older_quarters_val = [
+                            data_frame.at[quarter, 'net_earnings'] for quarter in older_quarters
+                        ]
+                        if all(val >= 0 for val in older_quarters_val):
+                            pos_dict[
+                                ''.join(['pos_net_earnings_', str(year), 'Y'])
+                            ].append(1)
+                        else:
+                            pos_dict[
+                                ''.join(['pos_net_earnings_', str(year), 'Y'])
+                            ].append(0)
+                    else:
+                        pos_dict[
+                            ''.join(['pos_net_earnings_', str(year), 'Y'])
+                        ].append(0)
+
+            return pd.DataFrame(pos_dict, index = quarters)
+
+        def sum_sales_revenues(data_frame):
+            """Function adding yearly sum of sales revenues"""
+
+            quarters = []
+            data_dict = {'sales_revenues_1Y_usd':[]}
+
+            for row_name in data_frame.index.values:
+                older_quarters = [
+                    quarters_changer(row_name, -i) for i in range(1, 5)
+                ]
+                if (
+                    all(quarter in data_frame.index for quarter in older_quarters)
+                    and 'sales_revenues' in data_frame.columns
+                ):
+                    quarters.append(row_name)
+                    older_quarters_val = [
+                        data_frame.at[quarter, 'sales_revenues'] for quarter in older_quarters
+                    ]
+                    data_dict['sales_revenues_1Y_usd'].append(sum(older_quarters_val))
+
+            return pd.DataFrame(data_dict, index=quarters)
+
+        sub_df = pd.DataFrame(data_dict, index = quarters)
+        var_dynamics_df = var_dynamics(sub_df)
+        if iteration == 6:
+            guru_df = guru_dynamics(sub_df)
+            pos_df = positive_earnings(sub_df)
+            sum_df = sum_sales_revenues(sub_df)
+        data_frame = data_frame.join(sub_df)
+        data_frame = data_frame.join(var_dynamics_df)
+        if iteration == 6:
+            data_frame = data_frame.join(guru_df)
+            data_frame = data_frame.join(pos_df)
+            data_frame = data_frame.join(sum_df)
 
         return data_frame
 
     def dividend_importer(self, url, data_frame):
         """Function importing dividends table."""
         # Special importer for dividends table
+
+        def cont_dividend(data_frame):
+            """Subfunction adding continuous dividend payment"""
+            # For each quarter checks for how long dividend was paid
+
+            quarters = []
+            data_dict = {'continuous_dividend':[]}
+
+            for row_name in data_frame.index.sort_values():
+                quarters.append(row_name)
+                quarter_val = data_frame.at[row_name, 'dividend_1Y']
+                prev_quarter = quarters_changer(row_name, -1)
+                if prev_quarter in data_frame.index:
+                    if quarter_val == 1:
+                        data_dict['continuous_dividend'].append(
+                            data_dict['continuous_dividend'][-1] + 1
+                        )
+                    else:
+                        data_dict['continuous_dividend'].append(0)
+                else:
+                    data_dict['continuous_dividend'].append(quarter_val)
+
+            return pd.DataFrame(data_dict, index = quarters)
 
         # Initiate dividends dict
         years, dividends, div_dict = [], [], {'quarter':[], 'dividend':[]}
@@ -361,9 +555,41 @@ class CompanyDF():
                 columns=['dividend_1Y']
             )
 
+            div_df = div_df.join(cont_dividend(div_df))
+
             data_frame = data_frame.join(div_df)
         else:
             data_frame['dividend_1Y'] = 0
+
+        return data_frame
+
+    def industry_country_importer(self, url, data_frame, code):
+        """Function adding companies' industry and country"""
+
+        data_dict = {
+            'company_code':[],
+            'country':[],
+            'industry':[]
+        }
+
+        tab = tab_finder(url, 'div', 'box-left').find('table')
+        if tab:
+            data_dict['company_code'].append(code)
+            data_dict['country'].append(
+                tab.find_all('tr')[0].text.split(':')[1][:2]
+            )
+            data_dict['industry'].append(
+                self.industry_dict[
+                    tab.find_all('tr')[-1].text.split(':')[1].replace('\n', '')
+                ]
+            )
+
+        data_frame = pd.merge(
+            data_frame,
+            pd.DataFrame(data_dict),
+            left_on='company_code',
+            right_on='company_code'
+        )
 
         return data_frame
 
@@ -443,24 +669,53 @@ class EcoDF():
             # For Q1 2020 it would be dynamics between Q3 2019 and Q1 2020
 
             # Initialization of data lists
-            quarters, data = [], []
+            quarters = []
+            data_dict = {
+                'wig_6m':[],
+                'best_wig_dynamics_y':[],
+                'wig_dynamics_y':[]
+            }
 
             for row_name in data_frame.index.values:
                 older_quarter = quarters_changer(row_name, -2)
+                year_after = quarters_changer(row_name, 4)
+                newer_quarters = [quarters_changer(row_name, i) for i in range(1, 5)]
 
                 quarters.append(row_name)
                 if older_quarter in data_frame.index:
-                    data.append(
+                    data_dict['wig_6m'].append(
                         dynamics(
                             data_frame.at[row_name, 'wig'],
                             data_frame.at[older_quarter, 'wig']
                         )
                     )
                 else:
-                    data.append(np.nan)
+                    data_dict['wig_6m'].append(np.nan)
 
-            temp_df = pd.DataFrame(data, index = quarters)
-            temp_df.columns = ['wig_6m']
+                if all(quarter in data_frame.index for quarter in newer_quarters):
+                    newer_quarters_val = [
+                        data_frame.at[quarter, 'wig'] for quarter in newer_quarters
+                    ]
+                    data_dict['best_wig_dynamics_y'].append(
+                        dynamics(
+                            max(newer_quarters_val),
+                            data_frame.at[row_name, 'wig']
+                        )
+                    )
+                else:
+                    data_dict['best_wig_dynamics_y'].append(np.nan)
+
+                if year_after in data_frame.index:
+                    data_dict['wig_dynamics_y'].append(
+                        dynamics(
+                            data_frame.at[year_after, 'wig'],
+                            data_frame.at[row_name, 'wig']
+                        )
+                    )
+                else:
+                    data_dict['wig_dynamics_y'].append(np.nan)
+
+            temp_df = pd.DataFrame(data_dict, index = quarters)
 
             return temp_df
 
@@ -515,23 +770,53 @@ class FinalDF():
         # Value is list: [dividend, divisor]
         div_dict = {
             'capitalization_usd':['capitalization', 'usd_pln'],
-            'relative_strength_6m':['price_change_6m', 'wig_6m'],
+            'sales_revenues_1Y_usd':['sales_revenues_1Y_usd', 'usd_pln'],
+            'relative_strength_6m':['price_dynamics_6m', 'wig_6m'],
             'price_earnings_net_earnings':['price_earnings', 'net_earnings'],
             'roce':['ebit', 'core_capital'],
             'net_debt_ebit':['net_debt', 'ebit'],
             'current_assets_short_term_liabilities':['current_assets', 'short_term_liabilities'],
             'long_term_liabilities_net_working_capital':[
                 'long_term_liabilities', 'net_working_capital'
-            ]
+            ],
+            'sum_earnings_price_1Y_price_earnings':['sum_earnings_share_1Y', 'earnings_per_share'],
+            'sum_earnings_price_2Y_price_earnings':['sum_earnings_share_2Y', 'earnings_per_share'],
+            'sum_earnings_price_3Y_price_earnings':['sum_earnings_share_3Y', 'earnings_per_share'],
+            'sum_earnings_price_4Y_price_earnings':['sum_earnings_share_4Y', 'earnings_per_share'],
+            'sum_earnings_price_5Y_price_earnings':['sum_earnings_share_5Y', 'earnings_per_share'],
+            'sum_earnings_price_6Y_price_earnings':['sum_earnings_share_6Y', 'earnings_per_share'],
+            'sum_earnings_price_7Y_price_earnings':['sum_earnings_share_7Y', 'earnings_per_share'],
+            'sum_earnings_price_8Y_price_earnings':['sum_earnings_share_8Y', 'earnings_per_share'],
+            'sum_earnings_price_9Y_price_earnings':['sum_earnings_share_9Y', 'earnings_per_share'],
+            'sum_earnings_price_10Y_price_earnings':[
+                'sum_earnings_share_10Y', 'earnings_per_share'
+            ],
+            'price_avg_earnings_share_1Y':['price', 'avg_earnings_share_1Y'],
+            'price_avg_earnings_share_2Y':['price', 'avg_earnings_share_2Y'],
+            'price_avg_earnings_share_3Y':['price', 'avg_earnings_share_3Y'],
+            'price_avg_earnings_share_4Y':['price', 'avg_earnings_share_4Y'],
+            'price_avg_earnings_share_5Y':['price', 'avg_earnings_share_5Y'],
+            'price_avg_earnings_share_6Y':['price', 'avg_earnings_share_6Y'],
+            'price_avg_earnings_share_7Y':['price', 'avg_earnings_share_7Y'],
+            'price_avg_earnings_share_8Y':['price', 'avg_earnings_share_8Y'],
+            'price_avg_earnings_share_9Y':['price', 'avg_earnings_share_9Y'],
+            'price_avg_earnings_share_10Y':['price', 'avg_earnings_share_10Y'],
         }
 
         # Ranking variables
         # Key is new variable name
         # Value is variable on which the ranking is based
 
+        # Replace negative ev_ebit with max ev_ebit
+        max_ev_ebit = data_frame.ev_ebit.max()
+        data_frame['temp_ev_ebit'] = data_frame.ev_ebit.mask(
+            data_frame.ev_ebit < 0,
+            max_ev_ebit
+        )
+
         # Ascending rank dict:
         asc_dict = {
-            'rank_ev_ebit':'ev_ebit',
+            'rank_ev_ebit':'temp_ev_ebit',
             'rank_price_sales_revenues':'price_sales_revenues',
             'rank_price_earnings':'price_earnings'
         }
@@ -551,25 +836,7 @@ class FinalDF():
 
         # Division of various features
         for key, value in div_dict.items():
-            dividend_index = data_frame.columns.get_loc(value[0])
-            divisor_index = data_frame.columns.get_loc(value[1])
-            division = []
-
-            # Yes, I know it's anti-pattern - but it's needed for proper division
-            for index, _ in data_frame.iterrows():
-                dividend = data_frame.iloc[index, dividend_index]
-                divisor = data_frame.iloc[index, divisor_index]
-                if not np.isnan(dividend):
-                    if divisor == 0 and dividend != 0:
-                        division.append(
-                            dividend / 10 ** -(int(math.log10(abs(dividend))) + 1)
-                        )
-                    if divisor == 0 and dividend == 0:
-                        division.append(0)
-                    division.append(dividend / divisor)
-                division.append(math.nan)
-
-            data_frame[key] = pd.Series(division)
+            data_frame[key] = data_frame[value[0]] / data_frame[value[1]]
 
         # Ascending rankings
         for key, value in asc_dict.items():
@@ -599,5 +866,6 @@ class FinalDF():
         )
 
         data_frame = pd.merge(data_frame, avg_price_earnings, left_on='quarter', right_index=True)
+        data_frame.drop(columns='temp_ev_ebit', inplace=True)
 
         return data_frame

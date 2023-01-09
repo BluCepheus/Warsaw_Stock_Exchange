@@ -10,6 +10,7 @@ from func.importer import EcoDF
 from func.importer import FinalDF
 import pandas as pd
 from requests.exceptions import ConnectionError as ce
+from requests.exceptions import ReadTimeout as rt
 
 def main_import():
     """Import of main data - financial reports of WSE companies."""
@@ -23,6 +24,14 @@ def main_import():
     features_df = pd.read_csv('data\\features_dict.csv', header=0)
     features_dict = dict(zip(features_df['PL'], features_df['Variable']))
 
+    # Loading of industry dict.
+    industry_df = pd.read_csv(
+        'data\\industry_dict.csv',
+        header=0,
+        encoding = 'utf-8'
+    )
+    industry_dict = dict(zip(industry_df['PL'], industry_df['Variable']))
+
     all_companies_df = pd.DataFrame()
 
     # Importing data of companies
@@ -31,7 +40,7 @@ def main_import():
     for code in comp_dict:
         code_iter += 1
         # Initialization of company data frame
-        importer = CompanyDF(code, features_dict)
+        importer = CompanyDF(code, features_dict, industry_dict)
 
         # List of urls
         url_list = [
@@ -47,20 +56,23 @@ def main_import():
             code + ',Q,0',
             'https://www.biznesradar.pl/raporty-finansowe-przeplywy-pieniezne/' +
             code + ',Q,0',
-            'https://www.biznesradar.pl/dywidenda/' + code
+            'https://www.biznesradar.pl/dywidenda/' + code,
+            'https://www.biznesradar.pl/notowania/' + code
         ]
 
         # Importing data
         temp_data_dict, quarters = importer.regular_importer(url_list[0])
         if quarters:
             company_df = pd.DataFrame(temp_data_dict, index=quarters)
-            company_df = importer.regular_addition(company_df, temp_data_dict, quarters, 0)
+            company_df = importer.price_addition(company_df)
 
             for i, url in enumerate(url_list[1:-1]):
                 temp_data_dict, quarters = importer.regular_importer(url)
                 company_df = importer.regular_addition(company_df, temp_data_dict, quarters, i + 1)
 
-            company_df = importer.dividend_importer(url_list[-1], company_df)
+            company_df = importer.dividend_importer(url_list[-2], company_df)
+            company_df = importer.industry_country_importer(url_list[-1], company_df, code)
+            company_df.dropna(subset=['best_price_dynamics_y', 'price_dynamics_y'], inplace=True)
 
         # Adding company's dataframe to final dataframe
         if not company_df.empty:
@@ -168,7 +180,9 @@ def final_merge():
     )
 
     final_df = merger.merger()
+    print('Merging files is finished.')
     final_df = merger.guru_features(final_df)
+    print('Calculating guru features is finished.')
 
     final_df.to_csv(
         'data\\full_datasets\\dataset_' + dt.now().strftime('%d_%m_%Y') +'.csv',
@@ -180,11 +194,15 @@ def final_merge():
 
 # Run the import
 try:
-    main_import()
+    # main_import()
     eco_import()
     final_merge()
-except ce:
+except ce :
     print('Failed to connect to the website.')
+    print('Check your internet connection and website availability.')
+    print('Main website is https://www.biznesradar.pl')
+except rt:
+    print('Read timed out.')
     print('Check your internet connection and website availability.')
     print('Main website is https://www.biznesradar.pl')
 finally:
