@@ -239,6 +239,8 @@ class CompanyDF():
                 'company_code':[],
                 'best_price_dynamics_y':[],
                 'price_dynamics_y':[],
+                'best_price_dynamics_in_q':[],
+                'price_dynamics_y_in_q':[],
                 'price_dynamics_6m':[],
                 'sum_earnings_share_10Y':[],
                 'sum_earnings_share_9Y':[],
@@ -279,6 +281,9 @@ class CompanyDF():
                             max(newer_quarters_val), data_frame.at[row_name, 'price']
                         )
                     )
+                    dynamics_dict['best_price_dynamics_in_q'].append(
+                        newer_quarters[newer_quarters_val.index(max(newer_quarters_val))]
+                    )
 
                     dynamics_dict['quarter'].append(row_name)
                     dynamics_dict['company_code'].append(comp_code)
@@ -290,8 +295,10 @@ class CompanyDF():
                                 newer_quarters_val[-1], data_frame.at[row_name, 'price']
                             )
                         )
+                        dynamics_dict['price_dynamics_y_in_q'].append(newer_quarters[-1])
                     else:
                         dynamics_dict['price_dynamics_y'].append(np.nan)
+                        dynamics_dict['price_dynamics_y_in_q'].append(np.nan)
 
 
                     # price_dynamics_6m

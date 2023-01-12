@@ -22,7 +22,6 @@ def main_import():
 
     # Loading of variables dict.
     features_df = pd.read_csv('data\\features_dict.csv', header=0)
-    features_dict = dict(zip(features_df['PL'], features_df['Variable']))
 
     # Loading of industry dict.
     industry_df = pd.read_csv(
@@ -30,7 +29,6 @@ def main_import():
         header=0,
         encoding = 'utf-8'
     )
-    industry_dict = dict(zip(industry_df['PL'], industry_df['Variable']))
 
     all_companies_df = pd.DataFrame()
 
@@ -40,7 +38,11 @@ def main_import():
     for code in comp_dict:
         code_iter += 1
         # Initialization of company data frame
-        importer = CompanyDF(code, features_dict, industry_dict)
+        importer = CompanyDF(
+            code,
+            dict(zip(features_df['PL'], features_df['Variable'])),
+            dict(zip(industry_df['PL'], industry_df['Variable']))
+        )
 
         # List of urls
         url_list = [
@@ -194,8 +196,8 @@ def final_merge():
 
 # Run the import
 try:
-    # main_import()
-    eco_import()
+    main_import()
+    # eco_import()
     final_merge()
 except ce :
     print('Failed to connect to the website.')
