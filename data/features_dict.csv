@@ -6,8 +6,8 @@ price,Kurs,Price
 number_of_shares,Liczba akcji,Number of shares
 book_value_per_share,Wartość księgowa na akcję,Book value per share
 price_book_value,Cena / Wartość księgowa,Price / Book value
-graham's_book_value_per_share,Wartość księgowa Grahama na akcję,Graham's book value per share
-price_graham's_book_value,Cena / Wartość księgowa Grahama,Price / Graham's book value
+graham_book_value_per_share,Wartość księgowa Grahama na akcję,Graham's book value per share
+price_graham_book_value,Cena / Wartość księgowa Grahama,Price / Graham's book value
 sales_revenues_per_share,Przychody ze sprzedaży na akcję,Sales revenues per share
 price_sales_revenues,Cena / Przychody ze sprzedaży,Price / Sales revenues
 earnings_per_share,Zysk na akcję,Earnings per share

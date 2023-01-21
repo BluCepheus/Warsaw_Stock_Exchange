@@ -1,4 +1,8 @@
 {
     "python.linting.pylintEnabled": true,
-    "python.linting.enabled": true
+    "python.linting.enabled": true,
+    "files.associations": {
+        "\"python.pythonPath\"": "C:\\Users\\jsztu\\OneDrive\\Pulpit\\Python_projects\\Warsaw_Stock_Exchange\\venv\\Scripts\\Python.exe"
+    },
+    "python.analysis.typeCheckingMode": "off"
 }

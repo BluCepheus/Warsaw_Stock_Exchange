@@ -117,8 +117,8 @@ def eco_import():
     tab = tfin(
         'https://www.biznesradar.pl/wskazniki-makroekonomiczne/',
         'table', 'qTableFull'
-    )
-    for row in tab.find_all('tr')[1:]:
+    )   
+    for row in tab.find_all('tr')[1:]:   
         url_dict[
             'https://www.biznesradar.pl' + row.td.a['href'].replace(
                 'notowania', 'notowania-historyczne'
@@ -130,12 +130,12 @@ def eco_import():
 
     # Importing economic data
 
+    importer = EcoDF(features_dict)
     url_iter = 0
     for url, row_name in url_dict.items():
         url_iter += 1
 
         # Initialization of data frame with data from single url
-        importer = EcoDF(features_dict)
         eco_df = pd.merge(
             eco_df, importer.eco_importer(url, row_name),
             how='left', left_index=True, right_index=True
@@ -197,7 +197,7 @@ def final_merge():
 # Run the import
 try:
     main_import()
-    # eco_import()
+    eco_import()
     final_merge()
 except ce :
     print('Failed to connect to the website.')

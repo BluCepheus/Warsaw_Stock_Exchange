@@ -786,16 +786,16 @@ class FinalDF():
             'long_term_liabilities_net_working_capital':[
                 'long_term_liabilities', 'net_working_capital'
             ],
-            'sum_earnings_price_1Y_price_earnings':['sum_earnings_share_1Y', 'earnings_per_share'],
-            'sum_earnings_price_2Y_price_earnings':['sum_earnings_share_2Y', 'earnings_per_share'],
-            'sum_earnings_price_3Y_price_earnings':['sum_earnings_share_3Y', 'earnings_per_share'],
-            'sum_earnings_price_4Y_price_earnings':['sum_earnings_share_4Y', 'earnings_per_share'],
-            'sum_earnings_price_5Y_price_earnings':['sum_earnings_share_5Y', 'earnings_per_share'],
-            'sum_earnings_price_6Y_price_earnings':['sum_earnings_share_6Y', 'earnings_per_share'],
-            'sum_earnings_price_7Y_price_earnings':['sum_earnings_share_7Y', 'earnings_per_share'],
-            'sum_earnings_price_8Y_price_earnings':['sum_earnings_share_8Y', 'earnings_per_share'],
-            'sum_earnings_price_9Y_price_earnings':['sum_earnings_share_9Y', 'earnings_per_share'],
-            'sum_earnings_price_10Y_price_earnings':[
+            'sum_earnings_share_1Y_earnings_per_share':['sum_earnings_share_1Y', 'earnings_per_share'],
+            'sum_earnings_share_2Y_earnings_per_share':['sum_earnings_share_2Y', 'earnings_per_share'],
+            'sum_earnings_share_3Y_earnings_per_share':['sum_earnings_share_3Y', 'earnings_per_share'],
+            'sum_earnings_share_4Y_earnings_per_share':['sum_earnings_share_4Y', 'earnings_per_share'],
+            'sum_earnings_share_5Y_earnings_per_share':['sum_earnings_share_5Y', 'earnings_per_share'],
+            'sum_earnings_share_6Y_earnings_per_share':['sum_earnings_share_6Y', 'earnings_per_share'],
+            'sum_earnings_share_7Y_earnings_per_share':['sum_earnings_share_7Y', 'earnings_per_share'],
+            'sum_earnings_share_8Y_earnings_per_share':['sum_earnings_share_8Y', 'earnings_per_share'],
+            'sum_earnings_share_9Y_earnings_per_share':['sum_earnings_share_9Y', 'earnings_per_share'],
+            'sum_earnings_share_10Y_earnings_per_share':[
                 'sum_earnings_share_10Y', 'earnings_per_share'
             ],
             'price_avg_earnings_share_1Y':['price', 'avg_earnings_share_1Y'],
@@ -874,5 +874,5 @@ class FinalDF():
 
         data_frame = pd.merge(data_frame, avg_price_earnings, left_on='quarter', right_index=True)
         data_frame.drop(columns='temp_ev_ebit', inplace=True)
-
+        
         return data_frame
