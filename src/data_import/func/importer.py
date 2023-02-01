@@ -335,7 +335,7 @@ class CompanyDF():
                                 ''.join(['avg_earnings_share_', str(year), 'Y'])
                             ].append(np.nan)
 
-            return pd.DataFrame(dynamics_dict, index = quarters)
+            return pd.DataFrame(dynamics_dict, index = dynamics_dict['quarter'])
 
         def cont_price_growth(data_frame):
             """Subfunction adding continuous price growth"""
@@ -550,6 +550,8 @@ class CompanyDF():
                         dividends.append(1)
                     else:
                         dividends.append(0)
+                else:
+                    dividends.append(0)
 
             for i, year in enumerate(years):
                 for val in range(1, 5):
@@ -786,15 +788,24 @@ class FinalDF():
             'long_term_liabilities_net_working_capital':[
                 'long_term_liabilities', 'net_working_capital'
             ],
-            'sum_earnings_share_1Y_earnings_per_share':['sum_earnings_share_1Y', 'earnings_per_share'],
-            'sum_earnings_share_2Y_earnings_per_share':['sum_earnings_share_2Y', 'earnings_per_share'],
-            'sum_earnings_share_3Y_earnings_per_share':['sum_earnings_share_3Y', 'earnings_per_share'],
-            'sum_earnings_share_4Y_earnings_per_share':['sum_earnings_share_4Y', 'earnings_per_share'],
-            'sum_earnings_share_5Y_earnings_per_share':['sum_earnings_share_5Y', 'earnings_per_share'],
-            'sum_earnings_share_6Y_earnings_per_share':['sum_earnings_share_6Y', 'earnings_per_share'],
-            'sum_earnings_share_7Y_earnings_per_share':['sum_earnings_share_7Y', 'earnings_per_share'],
-            'sum_earnings_share_8Y_earnings_per_share':['sum_earnings_share_8Y', 'earnings_per_share'],
-            'sum_earnings_share_9Y_earnings_per_share':['sum_earnings_share_9Y', 'earnings_per_share'],
+            'sum_earnings_share_1Y_earnings_per_share':[
+                'sum_earnings_share_1Y', 'earnings_per_share'],
+            'sum_earnings_share_2Y_earnings_per_share':[
+                'sum_earnings_share_2Y', 'earnings_per_share'],
+            'sum_earnings_share_3Y_earnings_per_share':[
+                'sum_earnings_share_3Y', 'earnings_per_share'],
+            'sum_earnings_share_4Y_earnings_per_share':[
+                'sum_earnings_share_4Y', 'earnings_per_share'],
+            'sum_earnings_share_5Y_earnings_per_share':[
+                'sum_earnings_share_5Y', 'earnings_per_share'],
+            'sum_earnings_share_6Y_earnings_per_share':[
+                'sum_earnings_share_6Y', 'earnings_per_share'],
+            'sum_earnings_share_7Y_earnings_per_share':[
+                'sum_earnings_share_7Y', 'earnings_per_share'],
+            'sum_earnings_share_8Y_earnings_per_share':[
+                'sum_earnings_share_8Y', 'earnings_per_share'],
+            'sum_earnings_share_9Y_earnings_per_share':[
+                'sum_earnings_share_9Y', 'earnings_per_share'],
             'sum_earnings_share_10Y_earnings_per_share':[
                 'sum_earnings_share_10Y', 'earnings_per_share'
             ],
@@ -874,5 +885,6 @@ class FinalDF():
 
         data_frame = pd.merge(data_frame, avg_price_earnings, left_on='quarter', right_index=True)
         data_frame.drop(columns='temp_ev_ebit', inplace=True)
+        data_frame.replace([np.inf, -np.inf], np.nan, inplace=True)
         
         return data_frame

@@ -8,6 +8,7 @@ from func.importer import tab_finder as tfin
 from func.importer import CompanyDF
 from func.importer import EcoDF
 from func.importer import FinalDF
+import numpy as np
 import pandas as pd
 from requests.exceptions import ConnectionError as ce
 from requests.exceptions import ReadTimeout as rt
@@ -19,6 +20,8 @@ def main_import():
 
     # Importing list of companies
     comp_dict = cimp(url_main)
+    # Empty company code causing duplicated rows
+    del comp_dict['NNGA']
 
     # Loading of variables dict.
     features_df = pd.read_csv('data\\features_dict.csv', header=0)
@@ -66,6 +69,10 @@ def main_import():
         temp_data_dict, quarters = importer.regular_importer(url_list[0])
         if quarters:
             company_df = pd.DataFrame(temp_data_dict, index=quarters)
+
+            # Removing observations with price equal to 0 (they are actually NAs)
+            company_df = company_df[company_df.price != 0]
+
             company_df = importer.price_addition(company_df)
 
             for i, url in enumerate(url_list[1:-1]):
