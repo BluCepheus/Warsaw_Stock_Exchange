@@ -781,7 +781,7 @@ class FinalDF():
             'capitalization_usd':['capitalization', 'usd_pln'],
             'sales_revenues_1Y_usd':['sales_revenues_1Y_usd', 'usd_pln'],
             'relative_strength_6m':['price_dynamics_6m', 'wig_6m'],
-            'price_earnings_net_earnings':['price_earnings', 'net_earnings'],
+            'price_earnings_net_earnings_yy':['price_earnings', 'net_earnings_yy'],
             'roce':['ebit', 'core_capital'],
             'net_debt_ebit':['net_debt', 'ebit'],
             'current_assets_short_term_liabilities':['current_assets', 'short_term_liabilities'],
