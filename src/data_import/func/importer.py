@@ -33,12 +33,13 @@ def company_importer(url):
 
     return comp_dict
 
-def date_converter(date):
+def date_converter(date, regular):
     """Subfunction converting date."""
     # Input format: dd.mm.yyyy
     # Output format: yyyy/QQ
     # If date is not quarter date (i.e. March/June/September/December)
     # function would return 'invalid_date' to prevent passing data from this period
+    # Variant depending on whether we use it over interest rates
 
     # Dict of dates
     date_dict = {
@@ -48,10 +49,14 @@ def date_converter(date):
         '12':'Q4'
     }
 
-    if date[3:5] in date_dict:
-        return date[6:] + '/' + date_dict[date[3:5]]
-
-    return 'invalid_date'
+    if regular:
+        if date[3:5] in date_dict:
+            return date[6:] + '/' + date_dict[date[3:5]]
+        return 'invalid_date'
+    else:
+        quarter = str(3 * math.ceil(int(date[3:5]) / 3))
+        if len(quarter) == 1: quarter = '0' + quarter
+        return date[6:] + '/' + date_dict[quarter]
 
 def dynamics(newer_val, older_val):
     """Function to handle dynamics calculation"""
@@ -621,7 +626,7 @@ class EcoDF():
         tab = tab_finder(url + ',' + str(page), 'table', 'qTableFull')
         while tab:
             for row in tab.find_all('tr')[1:]:
-                date_str = date_converter(row.find_all('td')[0].text)
+                date_str = date_converter(row.find_all('td')[0].text, True)
                 if date_str != 'invalid_date':
                     quarters.append(date_str)
                     data.append(leval(row.find_all('td')[1].text))
@@ -653,7 +658,7 @@ class EcoDF():
                 print(f'page {page}...')
                 for row in tab.find_all('tr')[1:]:
                     current_month = row.find_all('td')[0].text[3:5]
-                    current_date = date_converter(row.find_all('td')[0].text)
+                    current_date = date_converter(row.find_all('td')[0].text, True)
                     if current_month != prev_month and current_date != 'invalid_date':
                         date_str = current_date
                         quarters.append(date_str)
@@ -748,6 +753,92 @@ class EcoDF():
             )
 
         return indices_df
+
+    def rates_importer(self, quarters):
+        """Function handling interest rates data"""
+        # Additional importer for interest rates data
+        # These tables have different format than other
+        # (they skip month if there was no change of interest rates)
+
+        def tab_importer(url, row_name, quarters):
+            """Subfunction importing data from url"""
+
+            print(f'Importing {row_name}...')
+            # Initialization of data lists
+            data_dict, data_list, quarter_index = {}, [], []
+
+            # Gathering data from sub url
+            page = 1
+            tab = tab_finder(url + ',' + str(page), 'table', 'qTableFull')
+            prev_month, current_month = '', ''
+            while tab:
+                print(f'page {page}...')
+                for row in tab.find_all('tr')[1:]:
+                    current_month = row.find_all('td')[0].text[3:5]
+                    current_date = date_converter(row.find_all('td')[0].text, False)
+                    if (
+                        current_month != prev_month
+                        and current_date not in data_dict
+                    ):
+                        data_dict[current_date] = leval(row.find_all('td')[1].text)
+                    prev_month = current_month
+                page += 1
+                tab = tab_finder(url + ',' + str(page), 'table', 'qTableFull')
+
+            for quarter in quarters:
+                if quarter in data_dict:
+                    data_list.append(data_dict[quarter])
+                    quarter_index.append(quarter)
+                else:
+                    stop = False
+                    iter = -1
+                    while not stop:
+                        new_quarter = quarters_changer(quarter, iter)
+                        if new_quarter in data_dict:
+                            data_list.append(data_dict[new_quarter])
+                            quarter_index.append(quarter)
+                            stop = True
+                        else:
+                            iter -= 1
+
+            temp_df = pd.DataFrame(data_list, index=quarter_index)
+            temp_df.columns = [row_name]
+
+            print(f'Importing {row_name} is finished!')
+
+            return temp_df
+
+        rates_df = pd.DataFrame(index=quarters)
+
+        for data_frame in [
+            # Add interest rates
+            tab_importer(
+                'https://www.biznesradar.pl/notowania-historyczne/STOPA-REFERENCYJNA',
+                'reference_rate',
+                quarters
+            ),
+            tab_importer(
+                'https://www.biznesradar.pl/notowania-historyczne/STOPA-REDYSKONTA-WEKSLI',
+                'bills_rediscount_rate',
+                quarters
+            ),
+            tab_importer(
+                'https://www.biznesradar.pl/notowania-historyczne/STOPA-LOMBARDOWA',
+                'lombard_rate',
+                quarters
+            ),
+            tab_importer(
+                'https://www.biznesradar.pl/notowania-historyczne/STOPA-DEPOZYTOWA',
+                'deposit_rate',
+                quarters
+            )
+        ]:
+            rates_df = pd.merge(
+                rates_df, data_frame, how='left', left_index=True, right_index=True
+            )
+
+        return rates_df
+
 
 class FinalDF():
     """Final data frame"""

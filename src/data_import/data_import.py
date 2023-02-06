@@ -126,11 +126,12 @@ def eco_import():
         'table', 'qTableFull'
     )   
     for row in tab.find_all('tr')[1:]:   
-        url_dict[
-            'https://www.biznesradar.pl' + row.td.a['href'].replace(
-                'notowania', 'notowania-historyczne'
-            )
-        ] = row.td.a.text
+        if row.td.a.text in features_dict:
+            url_dict[
+                'https://www.biznesradar.pl' + row.td.a['href'].replace(
+                    'notowania', 'notowania-historyczne'
+                )
+            ] = row.td.a.text
 
     # Initialization of dataframe with economic data
     eco_df = pd.DataFrame(index=quarters)
@@ -158,6 +159,12 @@ def eco_import():
         how='left', left_index=True, right_index=True
     )
     print('Gathering indices data is finished!')
+
+    eco_df = pd.merge(
+        eco_df, importer.rates_importer(quarters),
+        how='left', left_index=True, right_index=True
+    )
+    print('Gathering interest rates data is finished!')
 
     eco_df.to_csv(
         'data\\eco\\economic_data_' + dt.now().strftime('%d_%m_%Y') +'.csv'
@@ -203,7 +210,7 @@ def final_merge():
 
 # Run the import
 try:
-    main_import()
+    # main_import()
     eco_import()
     final_merge()
 except ce :
