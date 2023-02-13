@@ -184,7 +184,7 @@ def final_merge():
 
 # Run the import
 try:
-    # main_import()
+    main_import()
     eco_import()
     final_merge()
 except ce :
