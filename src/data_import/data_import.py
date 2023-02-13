@@ -117,40 +117,20 @@ def eco_import():
         )['quarter'].unique()
     )
 
-    # Initialization of sub urls dict
-    url_dict = {}
-
-    # Gathering sub urls dict
-    tab = tfin(
-        'https://www.biznesradar.pl/wskazniki-makroekonomiczne/',
-        'table', 'qTableFull'
-    )   
-    for row in tab.find_all('tr')[1:]:   
-        if row.td.a.text in features_dict:
-            url_dict[
-                'https://www.biznesradar.pl' + row.td.a['href'].replace(
-                    'notowania', 'notowania-historyczne'
-                )
-            ] = row.td.a.text
-
     # Initialization of dataframe with economic data
     eco_df = pd.DataFrame(index=quarters)
 
     # Importing economic data
 
     importer = EcoDF(features_dict)
-    url_iter = 0
-    for url, row_name in url_dict.items():
-        url_iter += 1
-
-        # Initialization of data frame with data from single url
-        eco_df = pd.merge(
-            eco_df, importer.eco_importer(url, row_name),
-            how='left', left_index=True, right_index=True
-        )
-        print(
-            f'Importing {features_dict[row_name]} is finished! ({int(100*url_iter/len(url_dict))}%)'
-        )
+    eco_df = pd.merge(
+        eco_df, importer.eco_importer(
+            'https://www.biznesradar.pl/notowania-historyczne/INFM.MAK',
+            'Inflacja m/m (M)'
+        ),
+        how='left', left_index=True, right_index=True
+    )
+    print('Importing inflation data is finished!')
 
     print('Gathering economic data is finished!')
 
@@ -159,12 +139,6 @@ def eco_import():
         how='left', left_index=True, right_index=True
     )
     print('Gathering indices data is finished!')
-
-    eco_df = pd.merge(
-        eco_df, importer.rates_importer(quarters),
-        how='left', left_index=True, right_index=True
-    )
-    print('Gathering interest rates data is finished!')
 
     eco_df.to_csv(
         'data\\eco\\economic_data_' + dt.now().strftime('%d_%m_%Y') +'.csv'
