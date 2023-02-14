@@ -125,8 +125,8 @@ def eco_import():
     importer = EcoDF(features_dict)
     eco_df = pd.merge(
         eco_df, importer.eco_importer(
-            'https://www.biznesradar.pl/notowania-historyczne/INFM.MAK',
-            'Inflacja m/m (M)'
+            'https://www.biznesradar.pl/notowania-historyczne/INFLACJA',
+            'Inflacja r/r (M)'
         ),
         how='left', left_index=True, right_index=True
     )

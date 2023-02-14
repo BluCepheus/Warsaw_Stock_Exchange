@@ -891,5 +891,5 @@ class FinalDF():
         data_frame = pd.merge(data_frame, avg_price_earnings, left_on='quarter', right_index=True)
         data_frame.drop(columns='temp_ev_ebit', inplace=True)
         data_frame.replace([np.inf, -np.inf], np.nan, inplace=True)
-        
+
         return data_frame
