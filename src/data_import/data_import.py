@@ -4,11 +4,9 @@ from datetime import datetime as dt
 import glob
 import os
 from func.importer import company_importer as cimp
-from func.importer import tab_finder as tfin
 from func.importer import CompanyDF
 from func.importer import EcoDF
 from func.importer import FinalDF
-import numpy as np
 import pandas as pd
 from requests.exceptions import ConnectionError as ce
 from requests.exceptions import ReadTimeout as rt
@@ -21,7 +19,7 @@ def main_import():
     # Importing list of companies
     comp_dict = cimp(url_main)
     # Empty company code causing duplicated rows
-    del comp_dict['NNGA']
+    comp_dict.pop('NNGA', None)
 
     # Loading of variables dict.
     features_df = pd.read_csv('data\\features_dict.csv', header=0)
